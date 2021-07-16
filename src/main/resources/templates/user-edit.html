@@ -1,0 +1,35 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.0.1/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.0.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<h1 th:text="${pageName}"></h1>
+
+<div class="col-md-3"></div>
+<div class="col-md-4">
+    <form th:object="${user}" method="post" th:action="@{/users/update/{id}(id=${user.id})}">
+        <div class="mb-3">
+            <label for="exampleInputname" class="form-label">Name</label>
+            <input type="text" class="form-control" required th:field="*{name}" id="exampleInputname"
+                   aria-describedby="nameHelp">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputUsername1" class="form-label">Username</label>
+            <input type="text" class="form-control" required th:field="*{username}" id="exampleInputUsername1"
+                   aria-describedby="usernameHelp">
+            <div id="usernameHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" th:field="*{password}" required class="form-control" id="exampleInputPassword1">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>
